@@ -28,7 +28,7 @@ Ext.define("CafeTownsend.service.mock.EmployeeServiceMock", {
      * The mock service call.
      */
     getEmployeeList: function() {
-        console.log("EmployeeServiceMock.getEmployeeList");
+        logger.debug("EmployeeServiceMock.getEmployeeList");
 
         var response = {
             success: true,
@@ -56,7 +56,7 @@ Ext.define("CafeTownsend.service.mock.EmployeeServiceMock", {
      * The mock service call.
      */
     createEmployee: function(employee) {
-        console.log("EmployeeServiceMock.createEmployee");
+        logger.debug("EmployeeServiceMock.createEmployee");
 
         var response = {
             success: true,
@@ -77,7 +77,7 @@ Ext.define("CafeTownsend.service.mock.EmployeeServiceMock", {
      * The mock service call.
      */
     updateEmployee: function(employee) {
-        console.log("EmployeeServiceMock.updateEmployee: id = %s", employee.id);
+        logger.debug("EmployeeServiceMock.updateEmployee: id = %s", employee.id);
 
         var response = {
             success: true,
@@ -98,7 +98,7 @@ Ext.define("CafeTownsend.service.mock.EmployeeServiceMock", {
      * The mock service call.
      */
     deleteEmployee: function(employee) {
-        console.log("EmployeeServiceMock.deleteEmployee: id = %s", employee.id);
+        logger.debug("EmployeeServiceMock.deleteEmployee: id = %s", employee.id);
 
         var response = {
             success: true,

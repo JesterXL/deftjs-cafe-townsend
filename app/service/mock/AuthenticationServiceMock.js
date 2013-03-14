@@ -32,7 +32,7 @@ Ext.define("CafeTownsend.service.mock.AuthenticationServiceMock", {
      * @param responder     The responder (typically a controller) that handles the success and fault for the service.
      */
     authenticate: function(username, password) {
-        console.log("AuthenticationServiceMock.authenticate: username = " + username + ", password = " + password);
+        logger.debug("AuthenticationServiceMock.authenticate: username = " + username + ", password = " + password);
 
         var me = this;
 
@@ -65,7 +65,7 @@ Ext.define("CafeTownsend.service.mock.AuthenticationServiceMock", {
      * @param responder     The responder (typically a controller) that handles the success and fault for the service.
      */
     logout: function() {
-        console.log("AuthenticationServiceMock.logout");
+        logger.debug("AuthenticationServiceMock.logout");
 
         var response = {
             success: true

@@ -64,7 +64,7 @@ Ext.define("CafeTownsend.mediator.EmployeeDetailMediator", {
      */
     setupGlobalEventListeners: function() {
         this.callParent();
-        console.log("EmployeeDetailMediator.setupGlobalEventListeners");
+        logger.debug("EmployeeDetailMediator.setupGlobalEventListeners");
 
         this.addGlobalEventListener(CafeTownsend.event.EmployeeEvent.CREATE_EMPLOYEE_SUCCESS, this.onCreateEmployeeSuccess, this);
         this.addGlobalEventListener(CafeTownsend.event.EmployeeEvent.UPDATE_EMPLOYEE_SUCCESS, this.onUpdateEmployeeSuccess, this);
@@ -78,7 +78,7 @@ Ext.define("CafeTownsend.mediator.EmployeeDetailMediator", {
      * @param employee    The employee is the data model for the item in the list currently selected.
      */
     saveEmployee: function(employee) {
-        console.log("EmployeeDetailMediator.saveEmployee");
+        logger.debug("EmployeeDetailMediator.saveEmployee");
 
         var evt;
         var msg;
@@ -111,7 +111,7 @@ Ext.define("CafeTownsend.mediator.EmployeeDetailMediator", {
      * @param employee    The employee is the data model for the item in the list currently selected.
      */
     deleteEmployee: function(employee) {
-        console.log("EmployeeDetailMediator.deleteEmployee");
+        logger.debug("EmployeeDetailMediator.deleteEmployee");
 
         if(employee != null) {
 
@@ -131,7 +131,7 @@ Ext.define("CafeTownsend.mediator.EmployeeDetailMediator", {
      * Simple navigation method used to navigate back to the employee list view.
      */
     backToEmployeeList: function() {
-        console.log("EmployeeDetailMediator.backToEmployeeList");
+        logger.debug("EmployeeDetailMediator.backToEmployeeList");
 
         this.navigate(CafeTownsend.event.NavigationEvent.ACTION_BACK_SHOW_EMPLOYEE_LIST);
     },
@@ -144,7 +144,7 @@ Ext.define("CafeTownsend.mediator.EmployeeDetailMediator", {
      * Handles the create employee success application-level event. Navigates back to the employee list view.
      */
     onCreateEmployeeSuccess: function() {
-        console.log("EmployeeDetailMediator.onCreateEmployeeSuccess");
+        logger.debug("EmployeeDetailMediator.onCreateEmployeeSuccess");
 
         this.getEmployeeDetailView().setMasked(false);
         this.backToEmployeeList();
@@ -154,7 +154,7 @@ Ext.define("CafeTownsend.mediator.EmployeeDetailMediator", {
      * Handles the update employee success application-level event. Navigates back to the employee list view.
      */
     onUpdateEmployeeSuccess: function() {
-        console.log("EmployeeDetailMediator.onUpdateEmployeeFailure");
+        logger.debug("EmployeeDetailMediator.onUpdateEmployeeFailure");
 
         this.getEmployeeDetailView().setMasked(false);
         this.backToEmployeeList();
@@ -164,7 +164,7 @@ Ext.define("CafeTownsend.mediator.EmployeeDetailMediator", {
      * Handles the delete employee success application-level event. Navigates back to the employee list view.
      */
     onDeleteEmployeeSuccess: function() {
-        console.log("EmployeeDetailMediator.onDeleteEmployeeSuccess");
+        logger.debug("EmployeeDetailMediator.onDeleteEmployeeSuccess");
 
         this.getEmployeeDetailView().setMasked(false);
         this.backToEmployeeList();
@@ -178,7 +178,7 @@ Ext.define("CafeTownsend.mediator.EmployeeDetailMediator", {
      * Handles the back button tap event. Navigates back to the employee list view.
      */
     onBackButtonTap: function() {
-        console.log("EmployeeDetailMediator.onBackButtonTap");
+        logger.debug("EmployeeDetailMediator.onBackButtonTap");
 
         this.backToEmployeeList();
     },
@@ -188,7 +188,7 @@ Ext.define("CafeTownsend.mediator.EmployeeDetailMediator", {
      * to the functional save method.
      */
     onSaveEmployeeButtonTap: function() {
-        console.log("EmployeeDetailMediator.onSaveEmployeeButtonTap");
+        logger.debug("EmployeeDetailMediator.onSaveEmployeeButtonTap");
 
         var employee = this.getEmployeeDetailView().getRecord();
         var newEmployee = this.getEmployeeDetailView().getValues();
@@ -206,7 +206,7 @@ Ext.define("CafeTownsend.mediator.EmployeeDetailMediator", {
      * to the functional delete method.
      */
     onDeleteButtonTap: function() {
-        console.log("EmployeeDetailMediator.onDeleteButtonTap");
+        logger.debug("EmployeeDetailMediator.onDeleteButtonTap");
 
         var employee = this.getEmployeeDetailView().getRecord();
 

@@ -50,7 +50,12 @@ Ext.syncRequire([
 ]);
 
 Ext.onReady(function () {
-    console.log("app.onReady");
+
+    var logger = log4javascript.getLogger("RouterExample");
+    logger.setLevel(log4javascript.Level.ALL);
+    logger.addAppender(new log4javascript.BrowserConsoleAppender());
+    window.logger = logger;
+    logger.debug("app.onReady");
 
     // pull all of this in so they can be injected
     Ext.syncRequire([
@@ -126,7 +131,7 @@ Ext.application({
      * TODO: BMR: 02/22/13: Don't add all the views to the stage at once. Do it on demand.
      */
     launch: function () {
-        console.log("app.launch");
+        logger.debug("app.launch");
 
         Ext.Viewport.add([
             { xtype: "loginView" },

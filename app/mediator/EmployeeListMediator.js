@@ -74,7 +74,7 @@ Ext.define("CafeTownsend.mediator.EmployeeListMediator", {
      */
     setupGlobalEventListeners: function() {
         this.callParent();
-        console.log("EmployeeListMediator.setupGlobalEventListeners");
+        logger.debug("EmployeeListMediator.setupGlobalEventListeners");
 
         this.addGlobalEventListener(CafeTownsend.event.AuthenticationEvent.LOGIN_SUCCESS, this.onLoginSuccess, this);
 
@@ -86,7 +86,7 @@ Ext.define("CafeTownsend.mediator.EmployeeListMediator", {
      * Dispatches the application event to get the list of employees.
      */
     getEmployeeListData: function() {
-        console.log("EmployeeListMediator.getEmployeeListData");
+        logger.debug("EmployeeListMediator.getEmployeeListData");
 
         this.getEmployeeListView().setMasked({
             xtype: "loadmask",
@@ -108,7 +108,7 @@ Ext.define("CafeTownsend.mediator.EmployeeListMediator", {
         var logMsg = (record != null)
             ? ": id = " + record.get("id") + ", employee = " + record.get("firstName")
             : "";
-        console.log("EmployeeListMediator.showEmployeeDetail %s", logMsg);
+        logger.debug("EmployeeListMediator.showEmployeeDetail %s", logMsg);
 
         this.navigate(CafeTownsend.event.NavigationEvent.ACTION_SHOW_EMPLOYEE_DETAIL);
 
@@ -129,7 +129,7 @@ Ext.define("CafeTownsend.mediator.EmployeeListMediator", {
      * onto stage.
      */
     onLoginSuccess: function() {
-        console.log("EmployeeListMediator.onLoginSuccess");
+        logger.debug("EmployeeListMediator.onLoginSuccess");
 
         this.navigate(CafeTownsend.event.AuthenticationEvent.LOGIN_SUCCESS);
 
@@ -140,7 +140,7 @@ Ext.define("CafeTownsend.mediator.EmployeeListMediator", {
      * Handles the get employees application-level event.
      */
     onGetEmployeeListSuccess: function() {
-        console.log("EmployeeListMediator.onGetEmployeeListSuccess");
+        logger.debug("EmployeeListMediator.onGetEmployeeListSuccess");
 
         this.getEmployeeListView().setMasked(false);
         this.getList().setStore(this.getEmployeeStore());
@@ -150,7 +150,7 @@ Ext.define("CafeTownsend.mediator.EmployeeListMediator", {
      * Handles the get employees failure event from the login controller.
      */
     onGetEmployeeListFailure: function() {
-        console.log("EmployeeListMediator.onGetEmployeeListFailure");
+        logger.debug("EmployeeListMediator.onGetEmployeeListFailure");
 
         this.getEmployeeListView().setMasked(false);
     },
@@ -163,7 +163,7 @@ Ext.define("CafeTownsend.mediator.EmployeeListMediator", {
      * Handles the tap of the logout button. Dispatches the logout application-level event.
      */
     onLogoutButtonTap: function() {
-        console.log("EmployeeListMediator.onLogoutButtonTap");
+        logger.debug("EmployeeListMediator.onLogoutButtonTap");
 
         var evt = new CafeTownsend.event.AuthenticationEvent(CafeTownsend.event.AuthenticationEvent.LOGOUT);
         this.dispatchGlobalEvent(evt);
@@ -173,7 +173,7 @@ Ext.define("CafeTownsend.mediator.EmployeeListMediator", {
      * Handles the tap of the new employee button. Shows the employee detail view.
      */
     onNewEmployeeButtonTap: function() {
-        console.log("EmployeeListMediator.onNewEmployeeButtonTap");
+        logger.debug("EmployeeListMediator.onNewEmployeeButtonTap");
 
         this.showEmployeeDetail();
     },
@@ -190,7 +190,7 @@ Ext.define("CafeTownsend.mediator.EmployeeListMediator", {
      * @param {Object} options ???
      */
     onListDisclose: function(list, record, target, index, evt, options) {
-        console.log("EmployeeListMediator.onListDisclose");
+        logger.debug("EmployeeListMediator.onListDisclose");
 
         this.showEmployeeDetail(record);
     },
@@ -199,7 +199,7 @@ Ext.define("CafeTownsend.mediator.EmployeeListMediator", {
      * Handles the clear icon tap event on the search field. Clears all filter on the list's store.
      */
     onSearchClearIconTap: function() {
-        console.log("EmployeeListMediator.onSearchClearIconTap");
+        logger.debug("EmployeeListMediator.onSearchClearIconTap");
 
         var store = this.getList().getStore();
         store.clearFilter();
@@ -214,7 +214,7 @@ Ext.define("CafeTownsend.mediator.EmployeeListMediator", {
      * TODO: BMR: 02/28/13: clean this up. pulled directly from another example with minor changes: http://www.phs4j.com/2012/05/add-a-searchfield-to-a-sencha-touch-2-list-mvc/
      */
     onSearchKeyUp: function(field) {
-        console.log("EmployeeListMediator.onSearchKeyUp");
+        logger.debug("EmployeeListMediator.onSearchKeyUp");
 
         //get the store and the value of the field
         var value = field.getValue();

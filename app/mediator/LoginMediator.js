@@ -56,7 +56,7 @@ Ext.define("CafeTownsend.mediator.LoginMediator", {
      */
     init: function() {
         this.callParent();
-        console.log("LoginMediator.init");
+        logger.debug("LoginMediator.init");
     },
 
     /**
@@ -64,7 +64,7 @@ Ext.define("CafeTownsend.mediator.LoginMediator", {
      */
     setupGlobalEventListeners: function() {
         this.callParent();
-        console.log("LoginMediator.setupGlobalEventListeners");
+        logger.debug("LoginMediator.setupGlobalEventListeners");
 
         this.addGlobalEventListener(CafeTownsend.event.AuthenticationEvent.LOGIN_SUCCESS, this.onLoginSuccess, this);
         this.addGlobalEventListener(CafeTownsend.event.AuthenticationEvent.LOGIN_FAILURE, this.onLoginFailure, this);
@@ -78,7 +78,7 @@ Ext.define("CafeTownsend.mediator.LoginMediator", {
      * @param password      The password being passed to authenticate the user.
      */
     login: function(username, password) {
-        console.log("LoginMediator.login: username = " + username + ", password = " + password);
+        logger.debug("LoginMediator.login: username = " + username + ", password = " + password);
 
         var view = this.getLoginView();
 
@@ -99,7 +99,7 @@ Ext.define("CafeTownsend.mediator.LoginMediator", {
      * @param message   The message string displayed for a failed login.
      */
     showSignInFailedMessage: function(message) {
-        console.log("LoginMediator.showSignInFailedMessage: " + message);
+        logger.debug("LoginMediator.showSignInFailedMessage: " + message);
 
         var label = this.getComponentById("signInFailedLabel", this.getLoginView());
         label.setHtml(message);
@@ -133,7 +133,7 @@ Ext.define("CafeTownsend.mediator.LoginMediator", {
      * Handles the login success event from the login controller. Removes the loading mask from the view.
      */
     onLoginSuccess: function() {
-        console.log("LoginMediator.onLoginSuccess");
+        logger.debug("LoginMediator.onLoginSuccess");
 
         var view = this.getLoginView();
         view.setMasked(false);
@@ -144,7 +144,7 @@ Ext.define("CafeTownsend.mediator.LoginMediator", {
      * onto stage.
      */
     onLogoutSuccess: function() {
-        console.log("LoginMediator.onLoginSuccess");
+        logger.debug("LoginMediator.onLoginSuccess");
 
         var view = this.getLoginView();
         view.setMasked(false);
@@ -157,7 +157,7 @@ Ext.define("CafeTownsend.mediator.LoginMediator", {
      * Shows the faied login message.
      */
     onLoginFailure: function() {
-        console.log("LoginMediator.onLoginFailure");
+        logger.debug("LoginMediator.onLoginFailure");
 
         var view = this.getLoginView();
         view.setMasked(false);
@@ -176,7 +176,7 @@ Ext.define("CafeTownsend.mediator.LoginMediator", {
      * @param event The tap event from the login button on the login view.
      */
     onLoginButtonTap: function(event) {
-        console.log("LoginMediator.onLoginButtonTap");
+        logger.debug("LoginMediator.onLoginButtonTap");
 
         var username = this.getUsernameTextField().getValue();
         var password = this.getPasswordTextField().getValue();

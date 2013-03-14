@@ -50,7 +50,7 @@ Ext.define("CafeTownsend.mediator.ViewportMediator", {
      */
     setupGlobalEventListeners: function() {
         this.callParent();
-        console.log("ViewportMediator.setupGlobalEventListeners");
+        logger.debug("ViewportMediator.setupGlobalEventListeners");
 
         this.addGlobalEventListener(CafeTownsend.event.NavigationEvent.NAVIGATE, this.onNavigate, this);
     },
@@ -62,7 +62,7 @@ Ext.define("CafeTownsend.mediator.ViewportMediator", {
      * @param action    The current application-level action.
      */
     navigate: function(action) {
-        console.log("ViewportMediator.navigate: action = %s", action);
+        logger.debug("ViewportMediator.navigate: action = %s", action);
 
         var view;
         var direction;
@@ -93,7 +93,7 @@ Ext.define("CafeTownsend.mediator.ViewportMediator", {
         if(view != null) {
             Ext.Viewport.animateActiveItem(view, direction);
         } else {
-            console.warn("ViewportMediator.navigate: couldn't map navigation to action = %s", action);
+            logger.warn("ViewportMediator.navigate: couldn't map navigation to action = %s", action);
         }
 
     },
@@ -106,7 +106,7 @@ Ext.define("CafeTownsend.mediator.ViewportMediator", {
      * Handles the navigation applicaiton event and passes on the action to a functional, testable method.
      */
     onNavigate: function(event) {
-        console.log("ViewportMediator.onNavigate");
+        logger.debug("ViewportMediator.onNavigate");
 
         this.navigate(event.action)
     }

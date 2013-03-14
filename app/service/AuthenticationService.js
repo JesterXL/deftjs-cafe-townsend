@@ -28,7 +28,7 @@ Ext.define("CafeTownsend.service.AuthenticationService", {
      * @param password      The password being authenticated.
      */
     authenticate: function(username, password) {
-        console.log("AuthenticationService.authenticate: username = " + username + ", password = " + password);
+        logger.debug("AuthenticationService.authenticate: username = " + username + ", password = " + password);
 
         Ext.Ajax.request({
             url: "data/login-success.json",
@@ -39,14 +39,14 @@ Ext.define("CafeTownsend.service.AuthenticationService", {
             },
 
             success: function(response) {
-                console.log("AuthenticationService.authenticate.success");
+                logger.debug("AuthenticationService.authenticate.success");
 
                 var response = Ext.JSON.decode(response.responseText);
                 this.success(response);
             },
 
             failure: function(response) {
-                console.log("AuthenticationService.authenticate.failure");
+                logger.debug("AuthenticationService.authenticate.failure");
                 this.failure(response);
             }
         });
@@ -56,21 +56,21 @@ Ext.define("CafeTownsend.service.AuthenticationService", {
      * The logout ajax service call. Hits a json service and handles the success and fault accordingly.
      */
     logout: function() {
-        console.log("AuthenticationService.logout");
+        logger.debug("AuthenticationService.logout");
 
         Ext.Ajax.request({
             url: "data/logout-success.json",
             method: "post",
 
             success: function(response) {
-                console.log("AuthenticationService.logout.success");
+                logger.debug("AuthenticationService.logout.success");
 
                 var response = Ext.JSON.decode(response.responseText);
                 this.success(response);
             },
 
             failure: function(response) {
-                console.log("AuthenticationService.logout.failure");
+                logger.debug("AuthenticationService.logout.failure");
                 this.failure(response);
             }
         });

@@ -52,7 +52,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      */
     setupGlobalEventListeners: function() {
         this.callParent();
-        console.log("EmployeeController.setupGlobalEventListeners");
+        logger.debug("EmployeeController.setupGlobalEventListeners");
 
         this.addGlobalEventListener(CafeTownsend.event.EmployeeEvent.GET_EMPLOYEE_LIST, this.onGetEmployeeList, this);
         this.addGlobalEventListener(CafeTownsend.event.EmployeeEvent.CREATE_EMPLOYEE, this.onCreateEmployee, this);
@@ -66,7 +66,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * upon service completion and model updates.
      */
     getEmployeeList: function() {
-        console.log("EmployeeController.getEmployeeList");
+        logger.debug("EmployeeController.getEmployeeList");
 
         var responder = new SenchaExtensions.mvc.service.rpc.Responder(this.getEmployeeListSuccess, this.getEmployeeListFailure, this);
         var service = this.getEmployeeService();
@@ -81,7 +81,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * upon service completion and model updates.
      */
     createEmployee: function(employee) {
-        console.log("EmployeeController.createEmployee");
+        logger.debug("EmployeeController.createEmployee");
 
         var responder = new SenchaExtensions.mvc.service.rpc.Responder(this.createEmployeeSuccess, this.createEmployeeFailure, this);
         var service = this.getEmployeeService();
@@ -96,7 +96,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * upon service completion and model creates.
      */
     updateEmployee: function(employee) {
-        console.log("EmployeeController.updateEmployee");
+        logger.debug("EmployeeController.updateEmployee");
 
         var responder = new SenchaExtensions.mvc.service.rpc.Responder(this.updateEmployeeSuccess, this.updateEmployeeFailure, this);
         var service = this.getEmployeeService();
@@ -111,7 +111,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * upon service completion and model creates.
      */
     deleteEmployee: function(employee) {
-        console.log("EmployeeController.deleteEmployee");
+        logger.debug("EmployeeController.deleteEmployee");
 
         var responder = new SenchaExtensions.mvc.service.rpc.Responder(this.deleteEmployeeSuccess, this.deleteEmployeeFailure, this);
         var service = this.getEmployeeService();
@@ -131,7 +131,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * @param response  The response data packet from the successful service call.
      */
     getEmployeeListSuccess: function(response) {
-        console.log("EmployeeController.getEmployeeListSuccess");
+        logger.debug("EmployeeController.getEmployeeListSuccess");
 
         var store = this.getEmployeeStore();
         store.setData(response.employeeList);
@@ -147,7 +147,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * @param response  The response data packet from the failed service call.
      */
     getEmployeeListFailure: function(response) {
-        console.log("EmployeeController.getEmployeeListFailure");
+        logger.debug("EmployeeController.getEmployeeListFailure");
 
         var evt = new CafeTownsend.event.EmployeeEvent(CafeTownsend.event.EmployeeEvent.GET_EMPLOYEE_LIST_FAILURE);
         this.dispatchGlobalEvent(evt);
@@ -160,7 +160,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * @param response  The response data packet from the successful service call.
      */
     createEmployeeSuccess: function(response) {
-        console.log("EmployeeController.createEmployeeSuccess");
+        logger.debug("EmployeeController.createEmployeeSuccess");
 
         var store = this.getEmployeeStore();
 
@@ -177,7 +177,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * @param response  The response data packet from the failed service call.
      */
     createEmployeeFailure: function(response) {
-        console.log("EmployeeController.createEmployeeFailure");
+        logger.debug("EmployeeController.createEmployeeFailure");
 
         var evt = new CafeTownsend.event.EmployeeEvent(CafeTownsend.event.EmployeeEvent.CREATE_EMPLOYEE_FAILURE);
         this.dispatchGlobalEvent(evt);
@@ -190,7 +190,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * @param response  The response data packet from the successful service call.
      */
     updateEmployeeSuccess: function(response) {
-        console.log("EmployeeController.updateEmployeeSuccess");
+        logger.debug("EmployeeController.updateEmployeeSuccess");
 
         var store = this.getEmployeeStore();
         store.update(response.employee);
@@ -206,7 +206,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * @param response  The response data packet from the failed service call.
      */
     updateEmployeeFailure: function(response) {
-        console.log("EmployeeController.updateEmployeeFailure");
+        logger.debug("EmployeeController.updateEmployeeFailure");
 
         var evt = new CafeTownsend.event.EmployeeEvent(CafeTownsend.event.EmployeeEvent.UPDATE_EMPLOYEE_FAILURE);
         this.dispatchGlobalEvent(evt);
@@ -219,7 +219,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * @param response  The response data packet from the successful service call.
      */
     deleteEmployeeSuccess: function(response) {
-        console.log("EmployeeController.deleteEmployeeSuccess");
+        logger.debug("EmployeeController.deleteEmployeeSuccess");
 
         var store = this.getEmployeeStore();
         var employee = store.findRecord("id", response.employee.id);
@@ -237,7 +237,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * @param response  The response data packet from the failed service call.
      */
     deleteEmployeeFailure: function(response) {
-        console.log("EmployeeController.deleteEmployeeFailure");
+        logger.debug("EmployeeController.deleteEmployeeFailure");
 
         var evt = new CafeTownsend.event.EmployeeEvent(CafeTownsend.event.EmployeeEvent.DELETE_EMPLOYEE_FAILURE);
         this.dispatchGlobalEvent(evt);
@@ -254,7 +254,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * @param event Reference to the employee event.
      */
     onGetEmployeeList: function(event) {
-        console.log("EmployeeController.onGetEmployeeList");
+        logger.debug("EmployeeController.onGetEmployeeList");
 
         this.getEmployeeList();
     },
@@ -266,7 +266,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * @param event Reference to the employee event.
      */
     onCreateEmployee: function(event) {
-        console.log("EmployeeController.onCreateEmployee");
+        logger.debug("EmployeeController.onCreateEmployee");
 
         this.createEmployee(event.employee);
     },
@@ -278,7 +278,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * @param event Reference to the employee event.
      */
     onUpdateEmployee: function(event) {
-        console.log("EmployeeController.onUpdateEmployee");
+        logger.debug("EmployeeController.onUpdateEmployee");
 
         this.updateEmployee(event.employee);
     },
@@ -290,7 +290,7 @@ Ext.define("CafeTownsend.controller.EmployeeController", {
      * @param event Reference to the employee event.
      */
     onDeleteEmployee: function(event) {
-        console.log("EmployeeController.onDeleteEmployee");
+        logger.debug("EmployeeController.onDeleteEmployee");
 
         this.deleteEmployee(event.employee);
     }

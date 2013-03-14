@@ -52,7 +52,7 @@ Ext.define("CafeTownsend.controller.AuthenticationController", {
      */
     setupGlobalEventListeners: function() {
         this.callParent();
-        console.log("AuthenticationController.setupGlobalEventListeners");
+        logger.debug("AuthenticationController.setupGlobalEventListeners");
 
         this.addGlobalEventListener(CafeTownsend.event.AuthenticationEvent.LOGIN, this.onLogin, this);
         this.addGlobalEventListener(CafeTownsend.event.AuthenticationEvent.LOGOUT, this.onLogout, this);
@@ -67,7 +67,7 @@ Ext.define("CafeTownsend.controller.AuthenticationController", {
      * @param password      The password being passed to authenticate the user.
      */
     login: function(username, password) {
-        console.log("AuthenticationController.login: username = " + username + ", password = " + password);
+        logger.debug("AuthenticationController.login: username = " + username + ", password = " + password);
 
         // NOTE: You can set up the service call either using the longhand way where you need to know about the
         // use of the Responder object or you can use the framework method that does this behind the scenes: executeServiceCall()
@@ -87,7 +87,7 @@ Ext.define("CafeTownsend.controller.AuthenticationController", {
      * upon service completion and model updates.
      */
     logout: function() {
-        console.log("AuthenticationController.logout");
+        logger.debug("AuthenticationController.logout");
 
         var responder = new SenchaExtensions.mvc.service.rpc.Responder(this.logoutSuccess, this.logoutFailure, this);
         var service = this.getAuthenticationService();
@@ -100,7 +100,7 @@ Ext.define("CafeTownsend.controller.AuthenticationController", {
      * Resets the session data.
      */
     resetSessionData: function() {
-        console.info("AuthenticationController.resetSessionData");
+        logger.info("AuthenticationController.resetSessionData");
 
         this.setSessionToken(null);
         this.getEmployeeStore().setData(null);
@@ -117,7 +117,7 @@ Ext.define("CafeTownsend.controller.AuthenticationController", {
      * @param response  The response data packet from the successful service call.
      */
     loginSuccess: function(response) {
-        console.info("AuthenticationController.loginSuccess");
+        logger.info("AuthenticationController.loginSuccess");
 
         // The server will send a token that can be used throughout the app to confirm that the user is authenticated.
         this.setSessionToken(response.sessionToken);
@@ -133,7 +133,7 @@ Ext.define("CafeTownsend.controller.AuthenticationController", {
      * @param response  The response data packet from the failed service call.
      */
     loginFailure: function(response) {
-        console.warn("AuthenticationController.loginFailure");
+        logger.warn("AuthenticationController.loginFailure");
 
         this.resetSessionData();
 
@@ -148,7 +148,7 @@ Ext.define("CafeTownsend.controller.AuthenticationController", {
      * @param response  The response data packet from the successful service call.
      */
     logoutSuccess: function(response) {
-        console.info("AuthenticationController.logoutSuccess");
+        logger.info("AuthenticationController.logoutSuccess");
 
         this.resetSessionData();
 
@@ -163,7 +163,7 @@ Ext.define("CafeTownsend.controller.AuthenticationController", {
      * @param response  The response data packet from the failed service call.
      */
     logoutFailure: function(response) {
-        console.warn("AuthenticationController.logoutFailure");
+        logger.warn("AuthenticationController.logoutFailure");
 
         this.resetSessionData();
 
@@ -184,7 +184,7 @@ Ext.define("CafeTownsend.controller.AuthenticationController", {
     onLogin: function(event) {
         var username = event.username;
         var password = event.password;
-        console.log("AuthenticationController.onLogin: username = %s, password = %s", username, password);
+        logger.debug("AuthenticationController.onLogin: username = %s, password = %s", username, password);
 
         this.login(username, password);
     },
@@ -196,7 +196,7 @@ Ext.define("CafeTownsend.controller.AuthenticationController", {
      * @param @param {CafeTownsend.event.AuthenticationEvent} Reference to the logout event.
      */
     onLogout: function(event) {
-        console.log("AuthenticationController.onLogout");
+        logger.debug("AuthenticationController.onLogout");
 
         this.logout();
     }
